@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import date, timedelta
 import time
 import json
+import numpy as np
 
 sdate = date(2012,1,1) # start date
 edate = date(2021,7,12) # end date
@@ -23,6 +24,7 @@ df = get_prices(crypto,sunixtime,eunixtime)
 df.columns = ['dt','price']
 
 df['dt'] = pd.to_datetime(df['dt'],unit='ms')
+df['pricelog'] = np.log(df['price'])
 
 def write_data(df):
     print(f"Number of days printed: {len(df)}")
